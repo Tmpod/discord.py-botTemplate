@@ -5,8 +5,8 @@ from discord.ext import commands
 #import traceback #This is not necessary
 
 """Setting up loggin"""
-logging.basicConfig(level='INFO')
-logger = logging.getLogger('thisfile.py')
+#logging.basicConfig(level='INFO')
+#logger = logging.getLogger('thisfile.py')
 
 """Getting your bot token from a external file so that you can share your code easily without having to always black it out"""
 with open('./yourfilecontainingONLYyourbottoken.txt') as fp:
