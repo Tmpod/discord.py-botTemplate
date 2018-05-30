@@ -58,7 +58,7 @@ Discord Version: {discord.version_info}
     # To fire up the worker in the background:
     bot.loop.create_task(change_activities())
 
-    channel = utils.get(guild.channels, name="<the channel name you wanna send a Boot-up success message>")
+    channel = utils.get(ctx.guild.channels, name="<the channel name you wanna send a Boot-up success message>")
     await channel.send(":white_check_mark: {bot.user.name} successfuly booted-up!")
 
 
