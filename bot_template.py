@@ -1,4 +1,4 @@
-__version__
+__version__ = '<your bot version>'
 """Imports"""
 import discord
 from discord.ext import commands
