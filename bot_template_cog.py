@@ -3,7 +3,7 @@ import discord
 from discord.ext import commands
 
 
-with open('CYBORGBASEDATA.json') as json_data:
+with open('YOURBOTBASEDATA.json') as json_data:
     basedata = json.load(json_data)
     prefix = basedata['prefix']
 
