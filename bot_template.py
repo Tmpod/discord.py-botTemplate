@@ -33,15 +33,17 @@ bot = commands.Bot(description="<your bot description>", command_prefix=prefix)
 """Boot-up code"""
 @bot.event
 async def on_ready():
-    print(f"""\n=======================
+    creator = (await bot.application_info()).owner
+    print(f"""\n===========================
 I'm ready!
-Logged in as:
-{bot.user.name}
-ID:{str(bot.user.id)}
+Welcome to {bot.user.name}!
+ID: {str(bot.user.id)}
+Creator: {creator}
 Current prefix: {prefix}
 Python Version: {sys.version_info[0]}
-Discord Version: {discord.version_info}
-========================\n""")
+Discord Version: {discord.version_info[0]}
+CyborgToast Version: {__version__}
+===========================\n""")
     """Quite self-explanatory"""
     async def change_activities():
         options = ('Minesweeper', 'Pong', 'Tic-tac toe', 'with the Discord API')
