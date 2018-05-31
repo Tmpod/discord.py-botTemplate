@@ -2,23 +2,24 @@ __version__ = '<your bot version>'
 """Imports"""
 import discord
 from discord.ext import commands
-#import logging #This is not necessary
-#import traceback #This is not necessary
+#import logging # This is not necessary
+#import traceback # This is not necessary
 
 """Setting up loggin"""
 #logging.basicConfig(level='INFO')
 #logger = logging.getLogger('thisfile.py')
 
 """Getting your bot token from a external file so that you can share your code easily without having to always black it out"""
-with open('./yourfilecontainingONLYyourbottoken.txt') as fp:
-    TOKEN = fp.read().strip()
+with open('YOURBOTBASEDATA.json') as json_data:
+    basedata = json.load(json_data)
+    prefix = basedata['prefix'] # It's really useful to define the prefix in a seperate variable instead of just putting it directily in the 'command_prefix' paramter
 
-prefix = "<your bot prefix>" #It's really useful to define the prefix in a seperate variable instead of just putting it directily in the 'command_prefix' paramter
+
 
 bot = commands.Bot(description="<your bot description>", command_prefix=prefix)
 
 """This piece of code loads all the extensions delcared on the 'extensions' varaiable"""
-#extensions = ['module1', 'module2'] #You can have as many extensions as you want
+#extensions = ['module1', 'module2'] # You can have as many extensions as you want
 
 #for extension in extensions:
 #    try:
