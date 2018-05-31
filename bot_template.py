@@ -60,7 +60,8 @@ CyborgToast Version: {__version__}
     bot.loop.create_task(change_activities())  # To fire up the worker in the background:
 
     channel = bot.get_channel('<channel id in a int>') # Gets a discord.TextChannel from the id you insert. YOU MUST INSERT A INT, I've put a string because of syntax highlighting
-    await channel.send(f":white_check_mark: {bot.user.name} successfuly booted-up!") # And sends a message there
+    em = discord.Embed(description=f":white_check_mark: **{bot.user.name} successfuly booted-up!**", color=discord.Colour.green()) # Creating an pretty embed 
+    await channel.send(embed=em) # And sends a message there
 
 
 
