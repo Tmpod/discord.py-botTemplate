@@ -33,7 +33,7 @@ bot = commands.Bot(description="<your bot description>", command_prefix=prefix)
 """Boot-up code"""
 @bot.event
 async def on_ready():
-    creator = (await bot.application_info()).owner
+    creator = (await bot.application_info()).owner # This may seem a bit more complicate but all it does is get the bot owner
     print(f"""\n===========================
 I'm ready!
 Welcome to {bot.user.name}!
@@ -46,22 +46,26 @@ CyborgToast Version: {__version__}
 ===========================\n""")
     """Quite self-explanatory"""
     async def change_activities():
-        options = ('Minesweeper', 'Pong', 'Tic-tac toe', 'with the Discord API')
-        timeout = 60
-        watch = discord.Activity(type=discord.ActivityType.watching, name=f"for {prefix}help")
-        stream = discord.Streaming(url="<your twitch link>", name="bits of information")
-        listen = discord.Activity(type=discord.ActivityType.listening, name="to beeps and bops")
-        while True:
-            game = discord.Game(name=random.choice(options))
-            possb = random.choice([watch, stream, game, listen])
-            await bot.change_presence(activity=possb)
-            await asyncio.sleep(timeout)
+        options = ('Minesweeper', 'Pong', 'Tic-tac toe', 'with the Discord API') # All the options for the "Playing <smth>" status
+        timeout = 60  # The time between each change of status
+        watch = discord.Activity(type=discord.ActivityType.watching, name=f"for {prefix}help") # "Watching <smth>" status
+        stream = discord.Streaming(url="<your twitch link>", name="bits of information") # "Streaming <smth>" status
+        listen = discord.Activity(type=discord.ActivityType.listening, name="to beeps and bops") # "Listening <smth>" status
+        while True: # Infinite loop
+            game = discord.Game(name=random.choice(options)) # Pick a choice from 'options'. Watch out for how you import 'random', as that might affect how this line needs to be written. For more help refer to the Python Docs.
+            possb = random.choice([watch, stream, game, listen]) # Pick a choice from all the possibilities: "Playing", "Watching", "Streaming", "Listening" or "Playing"
+            await bot.change_presence(activity=possb) # Now change the status to the chosen pick
+            await asyncio.sleep(timeout) # And wait for 'timeout' seconds
 
-    # To fire up the worker in the background:
-    bot.loop.create_task(change_activities())
+    bot.loop.create_task(change_activities())  # To fire up the worker in the background:
 
-    channel = utils.get(ctx.guild.channels, name="<the channel name you wanna send a Boot-up success message>")
-    await channel.send(":white_check_mark: {bot.user.name} successfuly booted-up!")
+    channel = bot.get_channel('<channel id in a int>') # Gets a discord.TextChannel from the id you insert. YOU MUST INSERT A INT, I've put a string because of syntax highlighting
+    await channel.send(f":white_check_mark: {bot.user.name} successfuly booted-up!") # And sends a message there
 
 
-bot.run(TOKEN)
+
+# Your commands here #
+
+
+
+bot.run(TOKEN) # Actually running the bot running
